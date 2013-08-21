@@ -7,15 +7,14 @@ package checkers;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -39,7 +38,7 @@ public class Checkers extends Application {
         });
         */
         
-        StackPane root = new StackPane();
+        //StackPane root = new StackPane();
         //root.getChildren().add(btn);
         
         primaryStage.setTitle("Simple Checkers");
@@ -52,32 +51,28 @@ public class Checkers extends Application {
         grid.setPadding(new Insets(25, 25, 25, 25));
         
         //initial window set up
-        Text introText = new Text("Welcome to Simple Checkers! This is a simple game"
-                + " to review my Java while learning JavaFX.");
-        introText.setFont(Font.font("Tahoma", FontWeight.NORMAL, 16));
-        grid.add(introText, 0, 0, 3, 1);
+        Text introText = new Text("Welcome to Simple Checkers!");
+        introText.setFont(Font.font("Tahoma", FontWeight.NORMAL, 28));
+        grid.add(introText, 0, 0, 1, 1);
+        grid.setHalignment(introText, HPos.CENTER);
         grid.setGridLinesVisible(true);
         
         //buttons
+        HBox buttonhbox = new HBox();
+        buttonhbox.setPadding(new Insets(15, 12, 15, 12));
+        buttonhbox.setSpacing(10);
+        
         Button newGameBtn = new Button("New Game");
-        HBox ngBtn = new HBox(10);
-        ngBtn.setAlignment(Pos.BOTTOM_LEFT);
-        ngBtn.getChildren().add(newGameBtn);
-        grid.add(ngBtn, 0, 1);
-        
-        Button infoBtn = new Button("About");
-        HBox iBtn = new HBox(10);
-        iBtn.setAlignment(Pos.BOTTOM_CENTER);
-        iBtn.getChildren().add(infoBtn);
-        grid.add(iBtn, 1, 1);
-        
+        newGameBtn.setPrefWidth(150);
+        Button aboutBtn = new Button("About");
+        aboutBtn.setPrefWidth(150);
         Button quitBtn = new Button("Quit");
-        HBox qBtn = new HBox(10);
-        qBtn.setAlignment(Pos.BOTTOM_RIGHT);
-        qBtn.getChildren().add(quitBtn);
-        grid.add(qBtn, 2, 1);
+        quitBtn.setPrefWidth(150);
+        buttonhbox.getChildren().addAll(newGameBtn, aboutBtn, quitBtn);
+        buttonhbox.setAlignment(Pos.CENTER);
+        grid.add(buttonhbox, 0, 1);
         
-        Scene scene = new Scene(grid, 700, 400);
+        Scene scene = new Scene(grid, 600, 200);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
